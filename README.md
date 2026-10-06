@@ -1,6 +1,6 @@
 # D1 project
 
-A minimal TypeScript browser project for CMPM 121, Fall 2026. The official D1 specification is in the separate course Google Doc. Replace this introduction with your team's project description.
+A minimal TypeScript browser project for CMPM 121, Fall 2026. See the [official D1 specification](https://docs.google.com/document/d/1RdQ4yCqg6Jmkc7TH2W8KlLn9rBnvKmO35uvmbcDTOEc/edit). Replace this introduction with your team's project description.
 
 - **Team:** add your team credits here.
 - **Deployed app:** add your GitHub Pages URL here.
