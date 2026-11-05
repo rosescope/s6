@@ -1,6 +1,6 @@
 // Deep Sea Diver — an incremental game about catching fish.
 // Entry point: builds the UI and wires game logic to it.
-import { applyClick } from "./game/logic.ts";
+import { applyClick, formatNumber } from "./game/logic.ts";
 import { createGameState } from "./game/state.ts";
 
 const app = document.querySelector<HTMLElement>("#app")!;
@@ -13,11 +13,13 @@ heading.textContent = "Deep Sea Diver";
 const blurb = document.createElement("p");
 blurb.textContent = "Click the waves to catch fish.";
 
-// Minimal readout so the button's effect is visible. The formatted counter
-// display is its own feature and gets built next.
+// The fish counter. GameState is the single source of truth: every render
+// formats the current count fresh, so the display can never drift from state.
 const counter = document.createElement("p");
+counter.ariaLive = "polite";
+counter.style.fontSize = "1.4em";
 const renderCounter = (): void => {
-  counter.textContent = `Fish: ${state.fish}`;
+  counter.textContent = `Fish: ${formatNumber(state.fish)}`;
 };
 renderCounter();
 
