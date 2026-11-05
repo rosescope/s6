@@ -1,20 +1,32 @@
-// Vite turns this import into a production-safe URL. Keep it as a file so
-// even this tiny example demonstrates a separately deployed asset.
-// @deno-types="./asset-url.d.ts"
-import tileUrl from "./assets/tile.svg?no-inline";
+// Deep Sea Diver — an incremental game about catching fish.
+// Entry point: builds the UI and wires game logic to it.
+import { applyClick } from "./game/logic.ts";
+import { createGameState } from "./game/state.ts";
 
 const app = document.querySelector<HTMLElement>("#app")!;
 
+const state = createGameState();
+
 const heading = document.createElement("h1");
-heading.textContent = "D1 project";
+heading.textContent = "Deep Sea Diver";
 
-const image = document.createElement("img");
-image.src = tileUrl;
-image.alt = "A teal tile with a cream circle";
-image.width = 96;
-image.height = 96;
+const blurb = document.createElement("p");
+blurb.textContent = "Click the waves to catch fish.";
 
-const message = document.createElement("p");
-message.textContent = "Your project starts here.";
+// Minimal readout so the button's effect is visible. The formatted counter
+// display is its own feature and gets built next.
+const counter = document.createElement("p");
+const renderCounter = (): void => {
+  counter.textContent = `Fish: ${state.fish}`;
+};
+renderCounter();
 
-app.append(heading, image, message);
+const catchButton = document.createElement("button");
+catchButton.type = "button";
+catchButton.textContent = "🎣 Catch a fish";
+catchButton.addEventListener("click", () => {
+  applyClick(state);
+  renderCounter();
+});
+
+app.append(heading, blurb, counter, catchButton);
